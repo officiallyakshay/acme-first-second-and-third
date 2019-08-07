@@ -73,18 +73,20 @@
 
 		list.addEventListener('click', (ev) => {
 			const idx = [...ev.target.parentNode.children].indexOf(ev.target);
+
 			if (ev.target.tagName === 'LI') {
 				ev.target.classList.toggle('selected');
 			} else if (ev.target.tagName === 'BUTTON') {
-				console.log(ev.target.parentNode.innerHTML)
-					// const direction = ev.target.innerText; "<"
+					let trackLi = [...ev.target.parentNode.children][3].innerHTML;
+					console.log([...ev.target.parentNode.children][3].innerHTML.classList)
+					// if (trackLi.classList)
+				
 					const direction = ev.target.innerHTML; /*"&lt;"*/
+					if (direction === '&lt;') {
+						// secondName.innerHTML = trackLi.classList === 'selected';
+					}
 					console.log(direction)
-					console.log(ev)
 
-				// &lt; <
-				// &gt; >
-					
 			}
 		});
 
