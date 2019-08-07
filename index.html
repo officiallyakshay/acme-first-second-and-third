@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="styles.css">
+	
+</head>
+<body>
+
+	<h1>Acme First, Second, Third</h1>
+
+	<div id="lists">
+		<div id="first">
+			<button class="button" disabled><</button>
+			<button class="button">></button>
+			<h2>FIRST</h2>
+			<ul class="names" id="firstName">
+				
+			</ul>
+		</div>
+		<div id="second">
+			<button class="button"><</button>
+			<button class="button">></button>
+			<h2>SECOND</h2>
+			<ul class="names" id="secondName">
+				
+			</ul>
+		</div>
+		<div id="third">
+			<button class="button"><</button>
+			<button class="button" disabled>></button>
+			<h2>THIRD</h2>
+			<ul class="names" id="thirdName">
+				
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		const slots = ['first', 'second', 'third'];
+
+		const users = [
+			{ id: 1, name: 'moe', slot: 'first' },
+			{ id: 2, name: 'larry', slot: 'second' },
+			{ id: 3, name: 'curly', slot: 'third' },
+			{ id: 4, name: 'lucy', slot: 'third', selected: true }
+		];
+
+		const list = document.querySelector("#lists");
+		const first = document.querySelector("#first");
+		const firstName = document.querySelector("#firstName");
+		const second = document.querySelector("#second");
+		const third = document.querySelector("#third");
+		const button = document.querySelectorAll(".button");
+
+		const render = (slots) => {
+			const html = {};
+			slots.forEach((slot) => {
+				html[slot] = users.filter((user) => {
+					if (user.slot === slot) {
+						return true;
+					}
+				}).map((user) => {
+					return `<li> ${user.name} </li>`
+				}).join('');
+			});
+
+				firstName.innerHTML = html.first;
+				secondName.innerHTML = html.second;
+				thirdName.innerHTML = html.third;
+		}
+		render(slots);
+
+		list.addEventListener('click', (ev) => {
+			const idx = [...ev.target.parentNode.children].indexOf(ev.target);
+			if (ev.target.tagName === 'LI') {
+				ev.target.classList.toggle('selected');
+			} else if (ev.target.tagName === 'BUTTON') {
+				console.log(ev.target.parentNode.innerHTML)
+					// const direction = ev.target.innerText; "<"
+					const direction = ev.target.innerHTML; /*"&lt;"*/
+					console.log(direction)
+					console.log(ev)
+
+				// &lt; <
+				// &gt; >
+					
+			}
+		});
+
+
+
+		/*
+	
+			i want to check to see if the classList is set to selected
+			if so, once the button is clicked you change the contents
+			within the div depending on the direction of the button
+
+		*/
+
+
+
+	</script>
+
+</body>
+</html>
